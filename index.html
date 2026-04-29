@@ -12,6 +12,7 @@
 
 <body>
 
+<!-- AR Scene -->
 <a-scene 
   mindar-image="imageTargetSrc: targets.mind;" 
   vr-mode-ui="enabled: false" 
@@ -26,12 +27,11 @@
       loop 
       muted 
       autoplay 
-      playsinline
+      playsinline 
       webkit-playsinline
-></video>
-
-
     ></video>
+
+    <img id="img1" src="photo1.jpg">
   </a-assets>
 
   <!-- Camera -->
@@ -40,19 +40,72 @@
   <!-- Image Target -->
   <a-entity mindar-image-target="targetIndex: 0">
     
-    <!-- Video on top of image -->
+    <!-- Video -->
     <a-video 
+      id="videoPlane"
       src="video.mp4" 
       width="1" 
-      height="0.6" 
+      height="0.6"
       position="0 0 0"
+      visible="true"
     ></a-video>
+
+    <!-- Image -->
+    <a-image 
+      id="imagePlane"
+      src="#img1"
+      width="1"
+      height="0.6"
+      position="0 0 0"
+      visible="false"
+    ></a-image>
+
+    <!-- Text -->
+    <a-text 
+      id="textPlane"
+      value="Heeeelllllooooo! 🎉"
+      align="center"
+      color="white"
+      width="2"
+      position="0 0 0"
+      visible="false"
+    ></a-text>
 
   </a-entity>
 
 </a-scene>
 
+<!-- Buttons OUTSIDE scene -->
+<div style="position: fixed; bottom: 20px; width: 100%; text-align: center;">
+  <button onclick="showVideo()">Video</button>
+  <button onclick="showImage()">Photo</button>
+  <button onclick="showText()">Message</button>
+</div>
+
+<!-- JS -->
+<script>
+const video = document.querySelector("#videoPlane");
+const image = document.querySelector("#imagePlane");
+const text = document.querySelector("#textPlane");
+
+function showVideo() {
+  video.setAttribute("visible", true);
+  image.setAttribute("visible", false);
+  text.setAttribute("visible", false);
+}
+
+function showImage() {
+  video.setAttribute("visible", false);
+  image.setAttribute("visible", true);
+  text.setAttribute("visible", false);
+}
+
+function showText() {
+  video.setAttribute("visible", false);
+  image.setAttribute("visible", false);
+  text.setAttribute("visible", true);
+}
+</script>
+
 </body>
 </html>
-
-
